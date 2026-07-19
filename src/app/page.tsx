@@ -43,7 +43,16 @@ export default function LoginPage() {
     <div className="relative min-h-screen flex items-center justify-center bg-slate-950 font-sans text-slate-100 overflow-hidden">
       {/* Dynamic Background Effects */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(15,32,67,0.3)_0%,rgba(3,7,18,1)_80%)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(18,24,38,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(18,24,38,0.05)_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(30,41,59,0.18)_1px,transparent_1px),linear-gradient(to_bottom,rgba(30,41,59,0.18)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
+
+      {/* Giant faded logo watermark */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden">
+        <img
+          src="/logo.png"
+          alt="LSPD Watermark Seal"
+          className="w-[450px] sm:w-[550px] aspect-square object-contain opacity-[0.03] filter brightness-125 select-none pointer-events-none"
+        />
+      </div>
 
       {/* Main Login Card */}
       <div className="relative w-full max-w-md mx-4 z-10">
