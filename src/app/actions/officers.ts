@@ -168,10 +168,6 @@ export async function deleteOfficer(officerId: string) {
   }
 
   try {
-    // Delete officer's bodycam clips first to avoid foreign key constraint errors
-    await prisma.bodycamClip.deleteMany({
-      where: { uploaderId: officerId },
-    });
 
     const deletedUser = await prisma.user.delete({
       where: { id: officerId },

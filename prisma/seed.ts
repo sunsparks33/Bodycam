@@ -9,17 +9,17 @@ const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
-  // Clear existing data to ensure seed is idempotent
-  await prisma.bodycamClip.deleteMany({});
-  await prisma.user.deleteMany({});
+  // REMOVED: Wiping table statements (deleteMany) to preserve all clips and users
 
   // Default testing users
   const adminPasswordHash = await bcrypt.hash("admin123", 10);
   const officerPasswordHash = await bcrypt.hash("cop123", 10);
 
-  // 1. Seed default testing accounts
-  await prisma.user.create({
-    data: {
+  // 1. Upsert default testing accounts
+  await prisma.user.upsert({
+    where: { badgeNumber: "001" },
+    update: {},
+    create: {
       username: "Commander Doe",
       badgeNumber: "001",
       password: adminPasswordHash,
@@ -27,8 +27,10 @@ async function main() {
     },
   });
 
-  await prisma.user.create({
-    data: {
+  await prisma.user.upsert({
+    where: { badgeNumber: "100" },
+    update: {},
+    create: {
       username: "Officer Smith",
       badgeNumber: "100",
       password: officerPasswordHash,
@@ -36,7 +38,7 @@ async function main() {
     },
   });
 
-  // 2. Seed users parsed from PHPMyAdmin dump mapped to IRL panel Call-Signs
+  // 2. Upsert users parsed from PHPMyAdmin dump mapped to IRL panel Call-Signs
   const dumpUsers = [
     { username: 'reda_admin', badgeNumber: 'P-00', password: '$2y$10$2/SNbeDy.Tmz0Z93kog2POFW4MB2ZgkDxhd7iuQ3Wmxz.BtPDwjrC', role: 'HIGH_COMMAND' as const },
     { username: 'Achraf Farkav', badgeNumber: 'P-03', password: '$2y$10$xi/Mi6gBmdKcCwo0q3VnR.15w04S.WiIf/gJAT/eZkXAsIGhKfTiq', role: 'HIGH_COMMAND' as const },
@@ -61,8 +63,14 @@ async function main() {
   ];
 
   for (const user of dumpUsers) {
-    await prisma.user.create({
-      data: {
+    await prisma.user.upsert({
+      where: { badgeNumber: user.badgeNumber },
+      update: {
+        username: user.username,
+        password: user.password,
+        role: user.role,
+      },
+      create: {
         username: user.username,
         badgeNumber: user.badgeNumber,
         password: user.password,
@@ -71,7 +79,7 @@ async function main() {
     });
   }
 
-  console.log("Database seeded successfully with all LSPD officers and Call-Signs!");
+  console.log("Database seeded successfully using upserts (no deletions)!");
 }
 
 main()

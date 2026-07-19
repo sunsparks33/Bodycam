@@ -10,11 +10,10 @@ interface Clip {
   incidentDate: Date | string;
   caseNumber: string | null;
   description: string;
-  createdAt: Date | string;
   uploader: {
     badgeNumber: string;
     username: string;
-  };
+  } | null;
 }
 
 interface ArchiveTableProps {
@@ -33,7 +32,9 @@ export default function ArchiveTable({ clips }: ArchiveTableProps) {
 
     const matchesBadge =
       badgeTerm === "" ||
-      clip.uploader.badgeNumber.toLowerCase().includes(badgeTerm);
+      (clip.uploader
+        ? clip.uploader.badgeNumber.toLowerCase().includes(badgeTerm)
+        : "decommissioned".includes(badgeTerm));
 
     const matchesCase =
       caseTerm === "" ||
@@ -144,10 +145,18 @@ export default function ArchiveTable({ clips }: ArchiveTableProps) {
                   </td>
                   {/* Officer details */}
                   <td className="py-4 px-4 whitespace-nowrap text-slate-200">
-                    <span className="font-mono text-blue-400 font-bold mr-1.5">
-                      #{clip.uploader.badgeNumber}
-                    </span>
-                    <span className="text-slate-400">({clip.uploader.username})</span>
+                    {clip.uploader ? (
+                      <>
+                        <span className="font-mono text-blue-400 font-bold mr-1.5">
+                          #{clip.uploader.badgeNumber}
+                        </span>
+                        <span className="text-slate-400">({clip.uploader.username})</span>
+                      </>
+                    ) : (
+                      <span className="text-red-400/80 font-mono text-[10px] uppercase font-semibold">
+                        [DECOMMISSIONED]
+                      </span>
+                    )}
                   </td>
                   {/* Evidence Title */}
                   <td className="py-4 px-4 text-slate-100 font-bold uppercase tracking-wide group-hover:text-cyan-400 transition-colors">

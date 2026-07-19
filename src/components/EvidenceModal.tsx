@@ -10,7 +10,7 @@ interface Clip {
   uploader: {
     badgeNumber: string;
     username: string;
-  };
+  } | null;
 }
 
 interface EvidenceModalProps {
@@ -100,10 +100,10 @@ export default function EvidenceModal({ clip, onClose }: EvidenceModalProps) {
                   Reporting Officer
                 </span>
                 <span className="text-slate-200 block font-sans font-semibold">
-                  {clip.uploader.username}
+                  {clip.uploader ? clip.uploader.username : "Decommissioned Officer"}
                 </span>
                 <span className="text-blue-400 font-bold block mt-0.5">
-                  Badge #{clip.uploader.badgeNumber}
+                  {clip.uploader ? `Badge #${clip.uploader.badgeNumber}` : "STATUS: REMOVED"}
                 </span>
               </div>
               <div className="bg-slate-950/30 p-3 rounded border border-slate-800/40">

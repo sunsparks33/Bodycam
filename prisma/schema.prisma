@@ -34,7 +34,7 @@ model BodycamClip {
   caseNumber    String?
   description   String   @db.Text
   createdAt     DateTime @default(now())
-  uploaderId    String
-  uploader      User     @relation(fields: [uploaderId], references: [id])
+  uploaderId    String?
+  uploader      User?    @relation(fields: [uploaderId], references: [id], onDelete: SetNull)
 }
 
