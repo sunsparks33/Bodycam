@@ -29,9 +29,14 @@ export async function submitBodycamClip(input: SubmitClipInput) {
   }
 
   try {
-    // 3. Verify user exists in database to prevent foreign key errors from stale sessions
-    const dbUser = await prisma.user.findUnique({
-      where: { id: uploaderId },
+    // 3. Verify user exists in database by ID or Badge Number to handle re-seeded sessions
+    const dbUser = await prisma.user.findFirst({
+      where: {
+        OR: [
+          { id: session.user.id },
+          { badgeNumber: session.user.badgeNumber },
+        ],
+      },
     });
 
     // 4. Create the database record via Prisma

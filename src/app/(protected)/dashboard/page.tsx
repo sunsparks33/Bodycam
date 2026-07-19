@@ -21,15 +21,27 @@ export default async function DashboardPage() {
     return null; // Fallback handled by layout redirect
   }
 
-  // Fetch only this officer's clips, ordered by incidentDate descending
-  const clips = await prisma.bodycamClip.findMany({
+  // Find current user's DB ID by session ID or badge number to guarantee match
+  const dbUser = await prisma.user.findFirst({
     where: {
-      uploaderId: session.user.id,
-    },
-    orderBy: {
-      incidentDate: "desc",
+      OR: [
+        { id: session.user.id },
+        { badgeNumber: session.user.badgeNumber },
+      ],
     },
   });
+
+  // Fetch only this officer's clips, ordered by incidentDate descending
+  const clips = dbUser
+    ? await prisma.bodycamClip.findMany({
+        where: {
+          uploaderId: dbUser.id,
+        },
+        orderBy: {
+          incidentDate: "desc",
+        },
+      })
+    : [];
 
   return (
     <div className="max-w-7xl mx-auto p-6 md:p-8">

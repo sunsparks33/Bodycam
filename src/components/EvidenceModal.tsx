@@ -48,17 +48,25 @@ export default function EvidenceModal({ clip, onClose }: EvidenceModalProps) {
       {/* Click outside to close */}
       <div className="absolute inset-0" onClick={onClose} />
 
-      <div className="relative bg-slate-900 border border-blue-900/40 rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden z-10">
-        {/* Close Button Top Right */}
-        <button
-          onClick={onClose}
-          className="absolute top-3 right-3 text-slate-400 hover:text-slate-200 focus:outline-none p-1.5 hover:bg-slate-800 rounded transition-colors z-20"
-          aria-label="Close Modal"
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
+      <div className="relative bg-slate-900/95 backdrop-blur-xl border border-cyan-500/40 rounded-xl shadow-[0_0_50px_rgba(0,0,0,0.8)] w-full max-w-3xl max-h-[90vh] flex flex-col overflow-hidden z-10 animate-zoomIn">
+        {/* Modal Window Header */}
+        <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-800 bg-slate-950/80 select-none shrink-0">
+          <div className="flex items-center gap-2.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_rgba(34,211,238,0.6)]" />
+            <h3 className="text-xs font-bold font-mono tracking-widest text-slate-200 uppercase">
+              LSPD EVIDENCE PLAYBACK // FILE RECORD
+            </h3>
+          </div>
+          <button
+            onClick={onClose}
+            className="text-slate-400 hover:text-slate-100 focus:outline-none p-1 hover:bg-slate-800 rounded transition-colors"
+            aria-label="Close Modal"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
 
         {/* Modal Scrollable Container */}
         <div className="flex-1 overflow-y-auto">
