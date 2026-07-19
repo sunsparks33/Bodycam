@@ -1,0 +1,40 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  OFFICER
+  HIGH_COMMAND
+}
+
+model User {
+  id          String        @id @default(cuid())
+  username    String
+  badgeNumber String        @unique
+  password    String
+  role        Role
+  clips       BodycamClip[]
+}
+
+model BodycamClip {
+  id            String   @id @default(cuid())
+  title         String
+  streamableUrl String
+  incidentDate  DateTime
+  caseNumber    String?
+  description   String   @db.Text
+  createdAt     DateTime @default(now())
+  uploaderId    String
+  uploader      User     @relation(fields: [uploaderId], references: [id])
+}
+
