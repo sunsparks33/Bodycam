@@ -46,23 +46,23 @@ export default function BodycamForm() {
   };
 
   return (
-    <div className="bg-slate-900/30 backdrop-blur-md border border-slate-800/80 rounded-lg p-6 shadow-xl relative overflow-hidden transition-all duration-300 hover:border-blue-500/20">
-      {/* Visual Indicator strip */}
-      <div className="absolute top-0 left-0 w-full h-[2px] bg-blue-500/80" />
+    <div className="bg-white border border-blue-200 rounded-lg p-6 shadow-sm relative overflow-hidden transition-all duration-300 hover:border-blue-400/60 hover:shadow-md">
+      {/* Blue accent strip */}
+      <div className="absolute top-0 left-0 w-full h-[3px] bg-blue-600" />
 
-      <div className="mb-6 flex items-center justify-between border-b border-slate-800 pb-3">
-        <h2 className="text-sm font-bold font-mono text-slate-100 uppercase tracking-widest">
+      <div className="mb-6 flex items-center justify-between border-b border-blue-100 pb-3">
+        <h2 className="text-sm font-bold font-mono text-[#1a365d] uppercase tracking-widest">
           NEW RECORD SUBMISSION
         </h2>
-        <span className="text-[10px] font-mono text-blue-400 bg-blue-950/50 px-2 py-0.5 border border-blue-900/40 rounded">
+        <span className="text-[10px] font-mono text-blue-600 bg-blue-50 px-2 py-0.5 border border-blue-200 rounded">
           FORM LSPD-1040
         </span>
       </div>
 
       {/* Success banner */}
       {successMessage && (
-        <div className="mb-6 p-4 bg-emerald-950/40 border-l-4 border-emerald-500 rounded text-emerald-200 text-xs font-mono flex items-center gap-2.5">
-          <svg className="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="mb-6 p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded text-emerald-700 text-xs font-mono flex items-center gap-2.5">
+          <svg className="w-4 h-4 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <span>{successMessage}</span>
@@ -71,8 +71,8 @@ export default function BodycamForm() {
 
       {/* Error banner */}
       {error && (
-        <div className="mb-6 p-4 bg-red-950/40 border-l-4 border-red-500 rounded text-red-200 text-xs font-mono flex items-center gap-2.5">
-          <svg className="w-4 h-4 text-red-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-500 rounded text-red-700 text-xs font-mono flex items-center gap-2.5">
+          <svg className="w-4 h-4 text-red-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
           </svg>
           <span>{error}</span>
@@ -81,7 +81,7 @@ export default function BodycamForm() {
 
       <form onSubmit={handleSubmit} className="space-y-4 text-sm">
         <div>
-          <label htmlFor="title" className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5 font-mono">
+          <label htmlFor="title" className="block text-xs font-semibold text-[#1a365d] uppercase tracking-wider mb-1.5 font-mono">
             Report Title
           </label>
           <input
@@ -92,12 +92,12 @@ export default function BodycamForm() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="e.g., Code 3 Pursuit - 10-80"
-            className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 rounded py-2 px-3 text-slate-200 placeholder-slate-600 focus:outline-none transition-all duration-150"
+            className="w-full bg-blue-50/50 border border-blue-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 rounded-lg py-2 px-3 text-[#1a365d] placeholder-blue-300 focus:outline-none transition-all duration-150"
           />
         </div>
 
         <div>
-          <label htmlFor="streamableUrl" className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5 font-mono">
+          <label htmlFor="streamableUrl" className="block text-xs font-semibold text-[#1a365d] uppercase tracking-wider mb-1.5 font-mono">
             Streamable Video Link
           </label>
           <input
@@ -108,13 +108,13 @@ export default function BodycamForm() {
             value={streamableUrl}
             onChange={(e) => setStreamableUrl(e.target.value)}
             placeholder="e.g., https://streamable.com/abcde"
-            className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 rounded py-2 px-3 text-slate-200 placeholder-slate-600 focus:outline-none transition-all duration-150 font-mono text-xs"
+            className="w-full bg-blue-50/50 border border-blue-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 rounded-lg py-2 px-3 text-[#1a365d] placeholder-blue-300 focus:outline-none transition-all duration-150 font-mono text-xs"
           />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="incidentDate" className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5 font-mono">
+            <label htmlFor="incidentDate" className="block text-xs font-semibold text-[#1a365d] uppercase tracking-wider mb-1.5 font-mono">
               Incident Date / Time
             </label>
             <input
@@ -124,12 +124,12 @@ export default function BodycamForm() {
               disabled={isSubmitting}
               value={incidentDate}
               onChange={(e) => setIncidentDate(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 rounded py-2 px-3 text-slate-200 focus:outline-none transition-all duration-150 font-mono text-xs"
+              className="w-full bg-blue-50/50 border border-blue-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 rounded-lg py-2 px-3 text-[#1a365d] focus:outline-none transition-all duration-150 font-mono text-xs"
             />
           </div>
 
           <div>
-            <label htmlFor="caseNumber" className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5 font-mono">
+            <label htmlFor="caseNumber" className="block text-xs font-semibold text-[#1a365d] uppercase tracking-wider mb-1.5 font-mono">
               Case Number (Optional)
             </label>
             <input
@@ -139,13 +139,13 @@ export default function BodycamForm() {
               value={caseNumber}
               onChange={(e) => setCaseNumber(e.target.value)}
               placeholder="e.g., LSPD-2026-987"
-              className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 rounded py-2 px-3 text-slate-200 placeholder-slate-600 focus:outline-none transition-all duration-150 font-mono text-xs uppercase"
+              className="w-full bg-blue-50/50 border border-blue-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 rounded-lg py-2 px-3 text-[#1a365d] placeholder-blue-300 focus:outline-none transition-all duration-150 font-mono text-xs uppercase"
             />
           </div>
         </div>
 
         <div>
-          <label htmlFor="description" className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1.5 font-mono">
+          <label htmlFor="description" className="block text-xs font-semibold text-[#1a365d] uppercase tracking-wider mb-1.5 font-mono">
             Incident Summary
           </label>
           <textarea
@@ -156,14 +156,14 @@ export default function BodycamForm() {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Provide a chronological description of the event, including responding units and actions taken..."
-            className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 rounded py-2 px-3 text-slate-200 placeholder-slate-600 focus:outline-none transition-all duration-150 text-xs leading-relaxed resize-none"
+            className="w-full bg-blue-50/50 border border-blue-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 rounded-lg py-2 px-3 text-[#1a365d] placeholder-blue-300 focus:outline-none transition-all duration-150 text-xs leading-relaxed resize-none"
           />
         </div>
 
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full flex items-center justify-center bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white text-xs font-mono font-bold uppercase tracking-widest py-3 px-4 rounded border border-blue-500/40 hover:border-blue-400 shadow-md hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full flex items-center justify-center bg-[#1a365d] hover:bg-[#1e3a6a] active:bg-[#152d4d] text-white text-xs font-mono font-bold uppercase tracking-widest py-3 px-4 rounded-lg border border-blue-700/40 shadow-md hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isSubmitting ? "TRANSMITTING DATA..." : "COMMIT TO ARCHIVE"}
         </button>

@@ -34,24 +34,24 @@ export default async function ArchivePage() {
   return (
     <div className="max-w-7xl mx-auto p-6 md:p-8">
       {/* Top Banner Archive Console */}
-      <div className="mb-6 flex flex-col md:flex-row md:items-center justify-between border-b border-slate-800 pb-6 gap-4">
+      <div className="mb-6 flex flex-col md:flex-row md:items-center justify-between border-b border-blue-200 pb-6 gap-4">
         <div>
-          <h1 className="text-xl font-bold font-mono tracking-wider text-slate-100 uppercase sm:text-2xl flex items-center gap-3">
-            <span className="w-3 h-3 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.5)]" />
+          <h1 className="text-xl font-bold font-mono tracking-wider text-[#1a365d] uppercase sm:text-2xl flex items-center gap-3">
+            <span className="w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(37,99,235,0.4)]" />
             <span>LSPD MASTER ARCHIVE</span>
           </h1>
-          <p className="text-xs text-slate-400 mt-1 font-mono uppercase tracking-wide">
+          <p className="text-xs text-blue-500 mt-1 font-mono uppercase tracking-wide">
             High Command Database Access // Security Clearance level: HC-1
           </p>
         </div>
-        <div className="flex flex-col bg-slate-900 border border-cyan-900/30 rounded px-4 py-2 text-xs font-mono shadow-[0_0_10px_rgba(6,182,212,0.05)]">
-          <div className="flex items-center justify-between gap-6 text-slate-400">
+        <div className="flex flex-col bg-white border border-blue-200 rounded-lg px-4 py-2 text-xs font-mono shadow-sm">
+          <div className="flex items-center justify-between gap-6 text-slate-500">
             <span>ADMINISTRATOR:</span>
-            <span className="text-slate-100 font-bold">{session.user.name}</span>
+            <span className="text-[#1a365d] font-bold">{session.user.name}</span>
           </div>
-          <div className="flex items-center justify-between gap-6 text-slate-400 mt-1">
+          <div className="flex items-center justify-between gap-6 text-slate-500 mt-1">
             <span>CLEARANCE CODE:</span>
-            <span className="text-cyan-400 font-bold uppercase">HIGH_COMMAND</span>
+            <span className="text-blue-600 font-bold uppercase">HIGH_COMMAND</span>
           </div>
         </div>
       </div>
