@@ -44,114 +44,143 @@ export default function EvidenceModal({ clip, onClose }: EvidenceModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-6 sm:pt-12 bg-slate-950/85 backdrop-blur-sm p-4 sm:p-6 md:p-8 overflow-y-auto">
-      {/* Click outside to close */}
-      <div className="absolute inset-0" onClick={onClose} />
-
-      <div className="relative bg-slate-900/95 backdrop-blur-xl border border-cyan-500/40 rounded-xl shadow-[0_0_50px_rgba(0,0,0,0.8)] w-full max-w-3xl max-h-[90vh] flex flex-col overflow-hidden z-10 animate-zoomIn">
-        {/* Modal Window Header */}
-        <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-800 bg-slate-950/80 select-none shrink-0">
-          <div className="flex items-center gap-2.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_rgba(34,211,238,0.6)]" />
-            <h3 className="text-xs font-bold font-mono tracking-widest text-slate-200 uppercase">
+    <div
+      className="fixed inset-0 z-50 flex items-start justify-center pt-4 sm:pt-8 bg-black/80 backdrop-blur-md overflow-y-auto"
+      onClick={onClose}
+    >
+      <div
+        className="relative bg-slate-900 border border-cyan-500/30 rounded-xl shadow-[0_0_80px_rgba(0,0,0,0.9),0_0_30px_rgba(6,182,212,0.1)] w-full max-w-4xl mx-4 my-4 flex flex-col overflow-hidden z-10 animate-zoomIn"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* ── Window Title Bar ── */}
+        <div className="flex items-center justify-between px-5 py-3 border-b border-slate-800/80 bg-slate-950/90 select-none shrink-0">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1.5">
+              <span className="w-3 h-3 rounded-full bg-red-500/80 hover:bg-red-400 transition-colors cursor-pointer" onClick={onClose} />
+              <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
+              <span className="w-3 h-3 rounded-full bg-green-500/80" />
+            </div>
+            <div className="w-px h-4 bg-slate-700 mx-1" />
+            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_6px_rgba(34,211,238,0.6)]" />
+            <h3 className="text-[11px] font-bold font-mono tracking-widest text-slate-300 uppercase">
               LSPD EVIDENCE PLAYBACK // FILE RECORD
             </h3>
           </div>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-100 focus:outline-none p-1 hover:bg-slate-800 rounded transition-colors"
+            className="text-slate-500 hover:text-slate-100 focus:outline-none p-1.5 hover:bg-slate-800 rounded-lg transition-all duration-150"
             aria-label="Close Modal"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
 
-        {/* Modal Scrollable Container */}
-        <div className="flex-1 overflow-y-auto">
-          {/* 1. Embedded Video Player */}
-          <div className="relative w-full aspect-video bg-slate-950 border-b border-slate-950 flex items-center justify-center">
-            {streamableId ? (
-              <iframe
-                src={`https://streamable.com/e/${streamableId}`}
-                width="100%"
-                height="100%"
-                frameBorder="0"
-                allowFullScreen
-                className="absolute top-0 left-0 w-full h-full"
-              />
-            ) : (
-              <div className="text-red-400 font-mono text-xs p-4 text-center leading-relaxed">
-                [ERROR]: UNABLE TO PARSE VIDEO URL.
-                <br />
-                URL: {clip.streamableUrl}
+        {/* ── Video Player ── */}
+        <div className="relative w-full bg-black" style={{ paddingBottom: "56.25%" }}>
+          {streamableId ? (
+            <iframe
+              src={`https://streamable.com/e/${streamableId}`}
+              allow="autoplay; fullscreen"
+              allowFullScreen
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                border: "none",
+              }}
+            />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-center">
+                <div className="text-red-500 text-4xl mb-3">⚠</div>
+                <p className="text-red-400 font-mono text-xs tracking-wider">
+                  [ERROR]: UNABLE TO PARSE VIDEO URL
+                </p>
+                <p className="text-slate-600 font-mono text-[10px] mt-1">
+                  RAW: {clip.streamableUrl}
+                </p>
               </div>
-            )}
-          </div>
+            </div>
+          )}
+        </div>
 
-          {/* Details Area */}
-          <div className="p-6 space-y-6">
-            <div>
-              <span className="text-[9px] font-mono text-blue-400 bg-blue-950/50 px-2 py-0.5 border border-blue-900/40 rounded uppercase tracking-wider">
-                Evidence Record File
-              </span>
-              <h3 className="text-base font-bold text-slate-100 uppercase tracking-wide mt-2">
+        {/* ── Evidence Info Bar ── */}
+        <div className="px-5 py-4 border-t border-slate-800/60 bg-slate-950/60">
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2 mb-1.5">
+                <span className="text-[9px] font-mono text-cyan-400 bg-cyan-950/40 px-2 py-0.5 border border-cyan-900/30 rounded uppercase tracking-wider shrink-0">
+                  Evidence File
+                </span>
+                {clip.caseNumber && (
+                  <span className="text-[9px] font-mono text-yellow-400 bg-yellow-950/30 px-2 py-0.5 border border-yellow-900/30 rounded uppercase tracking-wider shrink-0">
+                    Case #{clip.caseNumber}
+                  </span>
+                )}
+              </div>
+              <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wide truncate">
                 {clip.title}
               </h3>
-            </div>
-
-            {/* 2. Full Metadata Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-800 text-[10px] text-slate-400 font-mono">
-              <div className="bg-slate-950/30 p-3 rounded border border-slate-800/40">
-                <span className="text-slate-500 block uppercase text-[8px] tracking-wider mb-1">
-                  Reporting Officer
-                </span>
-                <span className="text-slate-200 block font-sans font-semibold">
-                  {clip.uploader ? clip.uploader.username : "Decommissioned Officer"}
-                </span>
-                <span className="text-blue-400 font-bold block mt-0.5">
-                  {clip.uploader ? `Badge #${clip.uploader.badgeNumber}` : "STATUS: REMOVED"}
-                </span>
-              </div>
-              <div className="bg-slate-950/30 p-3 rounded border border-slate-800/40">
-                <span className="text-slate-500 block uppercase text-[8px] tracking-wider mb-1">
-                  Incident Date
-                </span>
-                <span className="text-slate-200 font-bold block">
-                  {formatDate(clip.incidentDate)}
-                </span>
-              </div>
-              <div className="bg-slate-950/30 p-3 rounded border border-slate-800/40">
-                <span className="text-slate-500 block uppercase text-[8px] tracking-wider mb-1">
-                  Case Number
-                </span>
-                <span
-                  className={`block font-bold uppercase ${
-                    clip.caseNumber ? "text-cyan-400" : "text-slate-500 font-normal"
-                  }`}
-                >
-                  {clip.caseNumber || "UNASSIGNED"}
-                </span>
-              </div>
-            </div>
-
-            {/* 3. Incident Description Summary */}
-            <div className="bg-slate-950/60 p-4 rounded border border-slate-800/60">
-              <span className="text-slate-500 block uppercase font-mono text-[8px] tracking-wider mb-2">
-                Case Narration Summary
-              </span>
-              <p className="text-slate-300 text-xs leading-relaxed whitespace-pre-line">
-                {clip.description}
-              </p>
             </div>
           </div>
         </div>
 
-        {/* Modal Footer */}
-        <div className="px-6 py-4 border-t border-slate-800 bg-slate-950/40 flex items-center justify-between text-[10px] text-slate-500 font-mono select-none">
-          <span>FILE_ID: {clip.id.toUpperCase()}</span>
-          <span>SYSTEM STATE: SECURITY_CLEARANCE_PASSED</span>
+        {/* ── Metadata Grid ── */}
+        <div className="grid grid-cols-3 border-t border-slate-800/40">
+          <div className="px-5 py-3 border-r border-slate-800/40">
+            <span className="text-slate-500 block uppercase font-mono text-[8px] tracking-wider mb-1">
+              Reporting Officer
+            </span>
+            <span className="text-slate-200 block font-semibold text-xs">
+              {clip.uploader ? clip.uploader.username : "Decommissioned Officer"}
+            </span>
+            <span className="text-blue-400 font-mono text-[10px] font-bold block mt-0.5">
+              {clip.uploader ? `Badge #${clip.uploader.badgeNumber}` : "STATUS: REMOVED"}
+            </span>
+          </div>
+          <div className="px-5 py-3 border-r border-slate-800/40">
+            <span className="text-slate-500 block uppercase font-mono text-[8px] tracking-wider mb-1">
+              Incident Date
+            </span>
+            <span className="text-slate-200 font-mono text-xs font-bold block">
+              {formatDate(clip.incidentDate)}
+            </span>
+          </div>
+          <div className="px-5 py-3">
+            <span className="text-slate-500 block uppercase font-mono text-[8px] tracking-wider mb-1">
+              Case Number
+            </span>
+            <span
+              className={`block font-mono text-xs font-bold uppercase ${
+                clip.caseNumber ? "text-cyan-400" : "text-slate-600"
+              }`}
+            >
+              {clip.caseNumber || "UNASSIGNED"}
+            </span>
+          </div>
+        </div>
+
+        {/* ── Description ── */}
+        <div className="px-5 py-4 border-t border-slate-800/40 bg-slate-950/40">
+          <span className="text-slate-500 block uppercase font-mono text-[8px] tracking-wider mb-2">
+            Case Narration Summary
+          </span>
+          <p className="text-slate-300 text-xs leading-relaxed whitespace-pre-line">
+            {clip.description}
+          </p>
+        </div>
+
+        {/* ── Footer Status Bar ── */}
+        <div className="px-5 py-2.5 border-t border-slate-800/60 bg-slate-950/70 flex items-center justify-between text-[9px] text-slate-600 font-mono select-none">
+          <span>FILE_ID: {clip.id.substring(0, 8).toUpperCase()}…</span>
+          <span className="flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-green-500/80" />
+            CLEARANCE: VERIFIED
+          </span>
         </div>
       </div>
     </div>
