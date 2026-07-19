@@ -257,7 +257,7 @@ export default function OfficersTable({ officers, currentUserRole }: OfficersTab
 
       {/* 1. Add Officer Modal */}
       {isAddModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 backdrop-blur-sm p-4">
+        <div className="fixed inset-0 z-50 flex items-start justify-center pt-8 sm:pt-16 bg-slate-950/85 backdrop-blur-sm p-4 overflow-y-auto">
           <div className="relative bg-slate-900 border border-blue-900/40 rounded-lg shadow-2xl w-full max-w-md flex flex-col overflow-hidden">
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-950/40 select-none">
@@ -384,7 +384,7 @@ export default function OfficersTable({ officers, currentUserRole }: OfficersTab
 
       {/* 2. Edit Officer Modal */}
       {isEditModalOpen && selectedOfficer && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 backdrop-blur-sm p-4">
+        <div className="fixed inset-0 z-50 flex items-start justify-center pt-8 sm:pt-16 bg-slate-950/85 backdrop-blur-sm p-4 overflow-y-auto">
           <div className="relative bg-slate-900 border border-blue-900/40 rounded-lg shadow-2xl w-full max-w-md flex flex-col overflow-hidden">
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-950/40 select-none">

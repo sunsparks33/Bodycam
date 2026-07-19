@@ -44,7 +44,7 @@ export default function EvidenceModal({ clip, onClose }: EvidenceModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 backdrop-blur-sm p-4 sm:p-6 md:p-8">
+    <div className="fixed inset-0 z-50 flex items-start justify-center pt-6 sm:pt-12 bg-slate-950/85 backdrop-blur-sm p-4 sm:p-6 md:p-8 overflow-y-auto">
       {/* Click outside to close */}
       <div className="absolute inset-0" onClick={onClose} />
 
