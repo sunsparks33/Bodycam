@@ -54,6 +54,7 @@ export const authOptions: AuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
+        token.name = user.name;
         token.badgeNumber = user.badgeNumber;
         token.role = user.role;
       }
@@ -61,9 +62,27 @@ export const authOptions: AuthOptions = {
     },
     async session({ session, token }) {
       if (token && session.user) {
-        session.user.id = token.id;
-        session.user.badgeNumber = token.badgeNumber;
-        session.user.role = token.role;
+        // Always refresh from DB to handle re-seeded databases with new IDs/badges
+        const dbUser = await prisma.user.findFirst({
+          where: {
+            OR: [
+              { id: token.id as string },
+              { username: token.name as string },
+            ],
+          },
+        });
+
+        if (dbUser) {
+          session.user.id = dbUser.id;
+          session.user.badgeNumber = dbUser.badgeNumber;
+          session.user.role = dbUser.role;
+          session.user.name = dbUser.username;
+        } else {
+          // Fallback to token data if user not found (edge case)
+          session.user.id = token.id;
+          session.user.badgeNumber = token.badgeNumber;
+          session.user.role = token.role;
+        }
       }
       return session;
     },

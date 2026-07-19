@@ -21,27 +21,16 @@ export default async function DashboardPage() {
     return null; // Fallback handled by layout redirect
   }
 
-  // Find current user's DB ID by session ID or badge number to guarantee match
-  const dbUser = await prisma.user.findFirst({
+  // Session data is always refreshed from DB via auth callbacks
+  // Use the resolved DB id directly to fetch personal clips
+  const clips = await prisma.bodycamClip.findMany({
     where: {
-      OR: [
-        { id: session.user.id },
-        { badgeNumber: session.user.badgeNumber },
-      ],
+      uploaderId: session.user.id as string,
+    },
+    orderBy: {
+      incidentDate: "desc",
     },
   });
-
-  // Fetch only this officer's clips, ordered by incidentDate descending
-  const clips = dbUser
-    ? await prisma.bodycamClip.findMany({
-        where: {
-          uploaderId: dbUser.id,
-        },
-        orderBy: {
-          incidentDate: "desc",
-        },
-      })
-    : [];
 
   return (
     <div className="max-w-7xl mx-auto p-6 md:p-8">

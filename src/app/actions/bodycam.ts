@@ -29,17 +29,8 @@ export async function submitBodycamClip(input: SubmitClipInput) {
   }
 
   try {
-    // 3. Verify user exists in database by ID or Badge Number to handle re-seeded sessions
-    const dbUser = await prisma.user.findFirst({
-      where: {
-        OR: [
-          { id: session.user.id },
-          { badgeNumber: session.user.badgeNumber },
-        ],
-      },
-    });
-
-    // 4. Create the database record via Prisma
+    // 3. Session user.id is always refreshed from DB via auth callbacks
+    // Create the database record via Prisma
     const clip = await prisma.bodycamClip.create({
       data: {
         title: input.title,
@@ -47,7 +38,7 @@ export async function submitBodycamClip(input: SubmitClipInput) {
         incidentDate: new Date(input.incidentDate),
         caseNumber: input.caseNumber || null,
         description: input.description,
-        uploaderId: dbUser ? dbUser.id : null,
+        uploaderId: session.user.id as string,
       },
     });
 
