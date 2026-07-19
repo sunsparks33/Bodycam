@@ -64,7 +64,7 @@ function ModalContent({ clip, onClose }: { clip: Clip; onClose: () => void }) {
       style={{ zIndex: 99999 }}
     >
       {/* ── Top Bar ── */}
-      <div className="shrink-0 flex items-center justify-between px-4 sm:px-6 py-3 bg-[#1a365d] border-b border-blue-800 select-none shadow-md z-10">
+      <div className="shrink-0 flex items-center justify-between px-4 sm:px-6 py-3 bg-slate-950 border-b border-cyan-500/30 select-none">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1.5">
             <span
@@ -74,8 +74,8 @@ function ModalContent({ clip, onClose }: { clip: Clip; onClose: () => void }) {
             <span className="w-3 h-3 rounded-full bg-white/70 shadow-[0_0_4px_rgba(255,255,255,0.3)]" />
             <span className="w-3 h-3 rounded-full bg-white/70 shadow-[0_0_4px_rgba(255,255,255,0.3)]" />
           </div>
-          <div className="w-px h-4 bg-blue-700" />
-          <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse shadow-[0_0_6px_rgba(96,165,250,0.6)]" />
+          <div className="w-px h-4 bg-slate-700" />
+          <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_6px_rgba(34,211,238,0.6)]" />
           <h3 className="text-[11px] font-bold font-mono tracking-widest text-white uppercase">
             LSPD EVIDENCE PLAYBACK // FILE RECORD
           </h3>
@@ -122,54 +122,54 @@ function ModalContent({ clip, onClose }: { clip: Clip; onClose: () => void }) {
       </div>
 
       {/* ── Bottom Info Panel ── */}
-      <div className="shrink-0 bg-white border-t border-blue-200 z-10">
+      <div className="shrink-0 bg-slate-950 border-t border-cyan-500/30">
         {/* Title Row */}
-        <div className="px-4 sm:px-6 py-3 flex items-center justify-between gap-4 border-b border-blue-100">
+        <div className="px-4 sm:px-6 py-3 flex items-center justify-between gap-4 border-b border-slate-800/50">
           <div className="flex items-center gap-2 min-w-0 flex-1">
-            <span className="text-[9px] font-mono text-blue-700 bg-blue-50 px-2 py-0.5 border border-blue-200 rounded uppercase tracking-wider shrink-0">
+            <span className="text-[9px] font-mono text-cyan-400 bg-cyan-950/40 px-2 py-0.5 border border-cyan-900/30 rounded uppercase tracking-wider shrink-0">
               Evidence
             </span>
             {clip.caseNumber && (
-              <span className="text-[9px] font-mono text-blue-700 bg-blue-50 px-2 py-0.5 border border-blue-200 rounded uppercase tracking-wider shrink-0">
+              <span className="text-[9px] font-mono text-yellow-400 bg-yellow-950/30 px-2 py-0.5 border border-yellow-900/30 rounded uppercase tracking-wider shrink-0">
                 Case #{clip.caseNumber}
               </span>
             )}
-            <h3 className="text-sm font-bold text-[#1a365d] uppercase tracking-wide truncate">
+            <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wide truncate">
               {clip.title}
             </h3>
           </div>
-          <span className="flex items-center gap-1.5 text-[9px] font-mono text-emerald-600 shrink-0 font-bold">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+          <span className="flex items-center gap-1.5 text-[9px] font-mono text-green-500 shrink-0">
+            <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
             VERIFIED
           </span>
         </div>
 
         {/* Metadata Row */}
-        <div className="grid grid-cols-3 divide-x divide-blue-100">
+        <div className="grid grid-cols-3 divide-x divide-slate-800/50">
           <div className="px-4 sm:px-6 py-2.5">
-            <span className="text-slate-400 block uppercase font-mono text-[8px] tracking-wider">
+            <span className="text-slate-500 block uppercase font-mono text-[8px] tracking-wider">
               Officer
             </span>
-            <span className="text-slate-700 text-xs font-semibold">
+            <span className="text-slate-200 text-xs font-semibold">
               {clip.uploader ? clip.uploader.username : "Decommissioned"}
             </span>
-            <span className="text-blue-600 font-mono text-[10px] font-bold ml-1.5">
+            <span className="text-blue-400 font-mono text-[10px] font-bold ml-1.5">
               {clip.uploader ? `#${clip.uploader.badgeNumber}` : ""}
             </span>
           </div>
           <div className="px-4 sm:px-6 py-2.5">
-            <span className="text-slate-400 block uppercase font-mono text-[8px] tracking-wider">
+            <span className="text-slate-500 block uppercase font-mono text-[8px] tracking-wider">
               Incident Date
             </span>
-            <span className="text-slate-700 font-mono text-xs font-bold">
+            <span className="text-slate-200 font-mono text-xs font-bold">
               {formatDate(clip.incidentDate)}
             </span>
           </div>
           <div className="px-4 sm:px-6 py-2.5">
-            <span className="text-slate-400 block uppercase font-mono text-[8px] tracking-wider">
+            <span className="text-slate-500 block uppercase font-mono text-[8px] tracking-wider">
               Case Number
             </span>
-            <span className={`font-mono text-xs font-bold uppercase ${clip.caseNumber ? "text-blue-600" : "text-slate-400"}`}>
+            <span className={`font-mono text-xs font-bold uppercase ${clip.caseNumber ? "text-cyan-400" : "text-slate-600"}`}>
               {clip.caseNumber || "UNASSIGNED"}
             </span>
           </div>
