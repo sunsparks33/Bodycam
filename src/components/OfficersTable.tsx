@@ -173,9 +173,9 @@ export default function OfficersTable({ officers, currentUserRole }: OfficersTab
   };
 
   return (
-    <div className="space-y-6">
-      {/* Roster Header */}
-      <div className="bg-slate-900 border border-blue-900/30 rounded p-5 shadow-md flex items-center justify-between gap-4">
+    <div className="space-y-6 animate-slideUp">
+      {/* Header section with Add Officer button for High Command */}
+      <div className="bg-slate-900/40 backdrop-blur-md border border-slate-800/80 rounded-lg p-5 shadow-xl flex items-center justify-between transition-all duration-300 hover:border-blue-500/20">
         <div>
           <h2 className="text-sm font-bold font-mono tracking-widest text-slate-100 uppercase">
             OFFICER DATABASE ROSTER
@@ -187,7 +187,7 @@ export default function OfficersTable({ officers, currentUserRole }: OfficersTab
         {currentUserRole === "HIGH_COMMAND" && (
           <button
             onClick={handleOpenAdd}
-            className="px-4 py-2 bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-mono text-xs font-bold uppercase tracking-wider rounded border border-blue-500/40 hover:border-blue-400 shadow-md transition-all duration-200"
+            className="px-4 py-2 bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-mono text-xs font-bold uppercase tracking-wider rounded border border-blue-500/40 hover:border-blue-400 shadow-md transition-all duration-200 hover:scale-[1.02]"
           >
             ADD NEW OFFICER
           </button>
@@ -195,7 +195,7 @@ export default function OfficersTable({ officers, currentUserRole }: OfficersTab
       </div>
 
       {/* Roster Table */}
-      <div className="bg-slate-900 border border-blue-900/20 rounded shadow-2xl overflow-x-auto relative">
+      <div className="bg-slate-900/30 backdrop-blur-md border border-slate-800/80 rounded-lg shadow-2xl overflow-x-auto relative transition-all duration-300 hover:border-blue-500/20">
         <div className="absolute top-0 left-0 w-full h-[2px] bg-blue-500/80" />
 
         <table className="w-full text-left border-collapse min-w-[600px]">

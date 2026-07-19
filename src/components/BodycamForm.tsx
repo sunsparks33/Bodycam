@@ -46,7 +46,7 @@ export default function BodycamForm() {
   };
 
   return (
-    <div className="bg-slate-900 border border-blue-900/30 rounded p-6 shadow-xl relative overflow-hidden">
+    <div className="bg-slate-900/30 backdrop-blur-md border border-slate-800/80 rounded-lg p-6 shadow-xl relative overflow-hidden transition-all duration-300 hover:border-blue-500/20">
       {/* Visual Indicator strip */}
       <div className="absolute top-0 left-0 w-full h-[2px] bg-blue-500/80" />
 

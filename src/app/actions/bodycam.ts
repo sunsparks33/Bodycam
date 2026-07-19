@@ -29,7 +29,12 @@ export async function submitBodycamClip(input: SubmitClipInput) {
   }
 
   try {
-    // 3. Create the database record via Prisma
+    // 3. Verify user exists in database to prevent foreign key errors from stale sessions
+    const dbUser = await prisma.user.findUnique({
+      where: { id: uploaderId },
+    });
+
+    // 4. Create the database record via Prisma
     const clip = await prisma.bodycamClip.create({
       data: {
         title: input.title,
@@ -37,7 +42,7 @@ export async function submitBodycamClip(input: SubmitClipInput) {
         incidentDate: new Date(input.incidentDate),
         caseNumber: input.caseNumber || null,
         description: input.description,
-        uploaderId: uploaderId,
+        uploaderId: dbUser ? dbUser.id : null,
       },
     });
 

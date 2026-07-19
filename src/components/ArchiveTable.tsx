@@ -55,9 +55,9 @@ export default function ArchiveTable({ clips }: ArchiveTableProps) {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 animate-slideUp">
       {/* Search Console Header */}
-      <div className="bg-slate-900 border border-blue-900/30 rounded p-4 shadow-md flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+      <div className="bg-slate-900/40 backdrop-blur-md border border-slate-800/80 rounded-lg p-4 shadow-xl flex flex-col lg:flex-row lg:items-center justify-between gap-4 transition-all duration-300 hover:border-blue-500/20">
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 flex-1">
           <div className="flex items-center gap-2">
             <span className="text-slate-500 font-mono text-[10px] uppercase select-none tracking-wider">Console Filters:</span>
@@ -74,8 +74,8 @@ export default function ArchiveTable({ clips }: ArchiveTableProps) {
               type="text"
               value={badgeFilter}
               onChange={(e) => setBadgeFilter(e.target.value)}
-              placeholder="Badge # (e.g. 100)"
-              className="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 rounded py-2 pl-9 pr-3 text-xs text-slate-200 placeholder-slate-600 focus:outline-none transition-all duration-150 font-mono"
+              placeholder="Badge # / decommissioned..."
+              className="w-full pl-9 pr-4 py-2 bg-slate-950/60 border border-slate-800 rounded font-mono text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/30 transition-all"
             />
           </div>
 
@@ -90,8 +90,8 @@ export default function ArchiveTable({ clips }: ArchiveTableProps) {
               type="text"
               value={caseFilter}
               onChange={(e) => setCaseFilter(e.target.value)}
-              placeholder="Case # (e.g. LSPD)"
-              className="w-full bg-slate-950 border border-slate-800 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/20 rounded py-2 pl-9 pr-3 text-xs text-slate-200 placeholder-slate-600 focus:outline-none transition-all duration-150 font-mono uppercase"
+              placeholder="Case Number..."
+              className="w-full pl-9 pr-4 py-2 bg-slate-950/60 border border-slate-800 rounded font-mono text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/30 transition-all"
             />
           </div>
         </div>
@@ -101,7 +101,7 @@ export default function ArchiveTable({ clips }: ArchiveTableProps) {
       </div>
 
       {/* Main Database Table Container */}
-      <div className="bg-slate-900 border border-blue-900/20 rounded shadow-2xl overflow-x-auto relative">
+      <div className="bg-slate-900/30 backdrop-blur-md border border-slate-800/80 rounded-lg shadow-2xl overflow-x-auto relative transition-all duration-300 hover:border-cyan-500/20">
         {/* Top styling indicator line */}
         <div className="absolute top-0 left-0 w-full h-[2px] bg-cyan-500/80" />
 

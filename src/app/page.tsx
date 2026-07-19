@@ -54,11 +54,14 @@ export default function LoginPage() {
         />
       </div>
 
-      {/* Main Login Card */}
-      <div className="relative w-full max-w-md mx-4 z-10">
-        <div className="bg-slate-900/80 backdrop-blur-md border border-blue-900/40 rounded-lg shadow-2xl p-8 md:p-10 relative overflow-hidden">
+      {/* Main Login Card with Glassmorphism & Entrance Animation */}
+      <div className="relative w-full max-w-md mx-4 z-10 animate-slideUp">
+        <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-800/80 rounded-xl shadow-2xl shadow-blue-950/40 p-8 md:p-10 relative overflow-hidden transition-all duration-500 hover:border-blue-500/30 hover:shadow-blue-500/10">
+          {/* Scanline CRT overlay effect */}
+          <div className="scanline" />
+
           {/* Top Decorative Scanning Line */}
-          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent animate-pulse" />
+          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent animate-pulse" />
 
           {/* Centered LSPD Header Logo / Vibe */}
           <div className="flex flex-col items-center text-center mb-6">
