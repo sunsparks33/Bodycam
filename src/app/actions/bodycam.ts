@@ -21,7 +21,7 @@ export async function submitBodycamClip(input: SubmitClipInput) {
     throw new Error("UNAUTHORIZED: You must be logged in to submit clips.");
   }
 
-  const uploaderId = session.user.id;
+
 
   // 2. Validate basic inputs
   if (!input.title || !input.streamableUrl || !input.incidentDate || !input.description) {
