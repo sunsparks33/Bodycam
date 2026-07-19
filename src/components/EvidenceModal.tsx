@@ -68,25 +68,25 @@ function ModalContent({ clip, onClose }: { clip: Clip; onClose: () => void }) {
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1.5">
             <span
-              className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-400 cursor-pointer transition-colors"
+              className="w-3 h-3 rounded-full bg-white hover:bg-red-400 cursor-pointer transition-colors shadow-[0_0_4px_rgba(255,255,255,0.4)]"
               onClick={onClose}
             />
-            <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
-            <span className="w-3 h-3 rounded-full bg-green-500/80" />
+            <span className="w-3 h-3 rounded-full bg-white/70 shadow-[0_0_4px_rgba(255,255,255,0.3)]" />
+            <span className="w-3 h-3 rounded-full bg-white/70 shadow-[0_0_4px_rgba(255,255,255,0.3)]" />
           </div>
           <div className="w-px h-4 bg-slate-700" />
           <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_6px_rgba(34,211,238,0.6)]" />
-          <h3 className="text-[11px] font-bold font-mono tracking-widest text-slate-300 uppercase">
+          <h3 className="text-[11px] font-bold font-mono tracking-widest text-white uppercase">
             LSPD EVIDENCE PLAYBACK // FILE RECORD
           </h3>
         </div>
         <div className="flex items-center gap-4">
-          <span className="text-[9px] font-mono text-slate-500 hidden sm:inline">
+          <span className="text-[9px] font-mono text-white/60 hidden sm:inline">
             FILE: {clip.id.substring(0, 8).toUpperCase()}
           </span>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-white focus:outline-none p-1.5 hover:bg-slate-800 rounded-lg transition-all"
+            className="text-white hover:text-red-400 focus:outline-none p-1.5 hover:bg-white/10 rounded-lg transition-all"
             aria-label="Close"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
